@@ -34,7 +34,7 @@ function Contact() {
             console.log(values);
 
             await requestCreateContact(values);
-            message.success('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+            message.success('Cảm ơn bạn đã liên hệ ViVuTravel! Chúng tôi sẽ phản hồi sớm nhất có thể.');
             form.resetFields();
         } catch (error) {
             message.error('Có lỗi xảy ra. Vui lòng thử lại sau.');
@@ -53,7 +53,7 @@ function Contact() {
         {
             icon: <MailOutlined className="text-2xl text-green-600" />,
             title: 'Email',
-            details: ['info@hotel.com', 'booking@hotel.com'],
+            details: ['hotro@vivutravel.vn', 'booking@vivutravel.vn'],
             description: 'Phản hồi trong 2 giờ',
         },
         {
@@ -66,7 +66,7 @@ function Contact() {
             icon: <ClockCircleOutlined className="text-2xl text-purple-600" />,
             title: 'Giờ Làm Việc',
             details: ['Thứ 2 - Thứ 6: 8:00 - 18:00', 'Thứ 7 - CN: 9:00 - 17:00'],
-            description: 'Lễ tân 24/7',
+            description: 'Hỗ trợ trực tuyến 24/7',
         },
     ];
 
@@ -80,28 +80,28 @@ function Contact() {
 
     const departments = [
         {
-            name: 'Đặt Phòng',
+            name: 'Đặt Tour',
             phone: '+84 24 1234 5678',
-            email: 'booking@hotel.com',
-            description: 'Hỗ trợ đặt phòng và dịch vụ',
+            email: 'booking@vivutravel.vn',
+            description: 'Tư vấn và hỗ trợ đặt tour',
         },
         {
-            name: 'Dịch Vụ Khách Hàng',
+            name: 'Chăm Sóc Khách Hàng',
             phone: '+84 24 1234 5679',
-            email: 'service@hotel.com',
-            description: 'Hỗ trợ dịch vụ và phản hồi',
+            email: 'support@vivutravel.vn',
+            description: 'Giải đáp thắc mắc & hỗ trợ sau đặt tour',
         },
         {
-            name: 'Sự Kiện & Hội Nghị',
+            name: 'Đối Tác & Hợp Tác',
             phone: '+84 24 1234 5680',
-            email: 'events@hotel.com',
-            description: 'Tổ chức sự kiện và hội nghị',
+            email: 'partner@vivutravel.vn',
+            description: 'Hợp tác kinh doanh & đại lý',
         },
         {
             name: 'Tuyển Dụng',
             phone: '+84 24 1234 5681',
-            email: 'hr@hotel.com',
-            description: 'Thông tin tuyển dụng',
+            email: 'hr@vivutravel.vn',
+            description: 'Cơ hội nghề nghiệp tại ViVuTravel',
         },
     ];
 
@@ -117,9 +117,9 @@ function Contact() {
                     <div className="absolute inset-0 bg-black opacity-30"></div>
                     <div className="relative z-10 flex items-center justify-center h-full">
                         <div className="text-center text-white max-w-4xl mx-auto px-4">
-                            <h1 className="text-4xl font-bold mb-4">Liên Hệ Với Chúng Tôi</h1>
+                            <h1 className="text-4xl font-bold mb-4">Liên Hệ ViVuTravel</h1>
                             <p className="text-xl mb-8">
-                                Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn mọi lúc, mọi nơi
+                                ViVuTravel luôn sẵn sàng lắng nghe và đồng hành cùng bạn trên mọi hành trình khám phá.
                             </p>
                             <div className="flex justify-center space-x-4">
                                 <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
@@ -144,7 +144,8 @@ function Contact() {
                                 <div className="mb-6">
                                     <h2 className="text-2xl font-bold text-gray-800 mb-2">Gửi Tin Nhắn</h2>
                                     <p className="text-gray-600">
-                                        Điền thông tin bên dưới và chúng tôi sẽ liên hệ lại với bạn
+                                        Vui lòng để lại thông tin, đội ngũ ViVuTravel sẽ phản hồi và hỗ trợ bạn trong
+                                        thời gian sớm nhất.
                                     </p>
                                 </div>
 
@@ -284,8 +285,8 @@ function Contact() {
                 {/* Map Section */}
                 <div className="container mx-auto px-4 py-16">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-4">Vị Trí Khách Sạn</h2>
-                        <p className="text-xl text-gray-600">Tìm đường đến khách sạn của chúng tôi</p>
+                        <h2 className="text-3xl font-bold text-gray-800 mb-4">Văn Phòng ViVuTravel</h2>
+                        <p className="text-xl text-gray-600">Tìm đường đến văn phòng đại diện của ViVuTravel</p>
                     </div>
 
                     <Card className="shadow-lg">
@@ -293,7 +294,7 @@ function Contact() {
                             <div className="text-center">
                                 <EnvironmentOutlined className="text-6xl text-blue-600 mb-4" />
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Bản Đồ Tương Tác</h3>
-                                <p className="text-gray-600 mb-4">123 Đường ABC, Quận 1, TP. Hồ Chí Minh</p>
+                                <p className="text-gray-600 mb-4">459 Tôn Đức Thắng, Phường Hòa Khánh, Đà Nẵng</p>
                                 <Button type="primary" size="large">
                                     Xem Trên Google Maps
                                 </Button>
@@ -313,25 +314,29 @@ function Contact() {
                         <Row gutter={[24, 24]}>
                             <Col xs={24} lg={12}>
                                 <Card className="shadow-lg">
-                                    <h4 className="font-bold text-gray-800 mb-2">Làm thế nào để đặt phòng?</h4>
+                                    <h4 className="font-bold text-gray-800 mb-2">Làm thế nào để đặt tour?</h4>
                                     <p className="text-gray-600 text-sm">
-                                        Bạn có thể đặt phòng qua website, gọi điện thoại hoặc email. Đội ngũ của chúng
-                                        tôi sẽ hỗ trợ bạn 24/7.
+                                        Bạn có thể đặt tour trực tiếp trên website ViVuTravel, hoặc liên hệ hotline để
+                                        được tư vấn chi tiết.
                                     </p>
                                 </Card>
                             </Col>
                             <Col xs={24} lg={12}>
                                 <Card className="shadow-lg">
-                                    <h4 className="font-bold text-gray-800 mb-2">Thời gian check-in/check-out?</h4>
+                                    <h4 className="font-bold text-gray-800 mb-2">
+                                        Quy trình thanh toán & xác nhận tour như thế nào?
+                                    </h4>
                                     <p className="text-gray-600 text-sm">
-                                        Check-in: 14:00, Check-out: 12:00. Chúng tôi có thể linh hoạt theo yêu cầu của
-                                        bạn.
+                                        Sau khi thanh toán thành công, hệ thống sẽ gửi email xác nhận và thông tin chi
+                                        tiết về hành trình của bạn.
                                     </p>
                                 </Card>
                             </Col>
                             <Col xs={24} lg={12}>
                                 <Card className="shadow-lg">
-                                    <h4 className="font-bold text-gray-800 mb-2">Có dịch vụ đưa đón sân bay không?</h4>
+                                    <h4 className="font-bold text-gray-800 mb-2">
+                                        ViVuTravel có hỗ trợ đưa đón không?
+                                    </h4>
                                     <p className="text-gray-600 text-sm">
                                         Có, chúng tôi cung cấp dịch vụ đưa đón sân bay với giá ưu đãi. Vui lòng đặt
                                         trước khi đến.
@@ -340,9 +345,60 @@ function Contact() {
                             </Col>
                             <Col xs={24} lg={12}>
                                 <Card className="shadow-lg">
-                                    <h4 className="font-bold text-gray-800 mb-2">Chính sách hủy phòng?</h4>
+                                    <h4 className="font-bold text-gray-800 mb-2">Chính sách hủy tour như thế nào?</h4>
                                     <p className="text-gray-600 text-sm">
-                                        Hủy miễn phí trước 24h. Hủy trong vòng 24h sẽ tính phí 50% giá phòng.
+                                        Chính sách hủy tùy thuộc vào từng tour cụ thể. Vui lòng xem chi tiết trong phần
+                                        điều khoản của tour hoặc liên hệ chúng tôi để được hỗ trợ.
+                                    </p>
+                                </Card>
+                            </Col>
+                            <Col xs={24} lg={12}>
+                                <Card className="shadow-lg">
+                                    <h4 className="font-bold text-gray-800 mb-2">
+                                        Tôi có thể thay đổi ngày khởi hành sau khi đặt tour không?
+                                    </h4>
+                                    <p className="text-gray-600 text-sm">
+                                        Trong một số trường hợp, bạn có thể thay đổi ngày khởi hành tùy theo điều kiện
+                                        của từng tour. Vui lòng liên hệ sớm với ViVuTravel để được hỗ trợ tốt nhất.
+                                    </p>
+                                </Card>
+                            </Col>
+
+                            <Col xs={24} lg={12}>
+                                <Card className="shadow-lg">
+                                    <h4 className="font-bold text-gray-800 mb-2">
+                                        Giá tour đã bao gồm những chi phí nào?
+                                    </h4>
+                                    <p className="text-gray-600 text-sm">
+                                        Giá tour thường bao gồm vé tham quan, phương tiện di chuyển, lưu trú, hướng dẫn
+                                        viên và một số bữa ăn theo chương trình. Chi tiết sẽ được ghi rõ trong phần mô
+                                        tả tour.
+                                    </p>
+                                </Card>
+                            </Col>
+
+                            <Col xs={24} lg={12}>
+                                <Card className="shadow-lg">
+                                    <h4 className="font-bold text-gray-800 mb-2">
+                                        Tôi có cần đặt cọc trước khi tham gia tour không?
+                                    </h4>
+                                    <p className="text-gray-600 text-sm">
+                                        Tùy vào từng tour, bạn có thể cần thanh toán toàn bộ hoặc đặt cọc trước một phần
+                                        chi phí. Thông tin thanh toán sẽ được hiển thị rõ ràng trước khi bạn xác nhận
+                                        đặt tour.
+                                    </p>
+                                </Card>
+                            </Col>
+
+                            <Col xs={24} lg={12}>
+                                <Card className="shadow-lg">
+                                    <h4 className="font-bold text-gray-800 mb-2">
+                                        ViVuTravel có hỗ trợ khách đoàn hoặc tour riêng không?
+                                    </h4>
+                                    <p className="text-gray-600 text-sm">
+                                        Có. Chúng tôi cung cấp dịch vụ thiết kế tour riêng theo yêu cầu cho gia đình,
+                                        công ty hoặc nhóm bạn. Vui lòng liên hệ để được tư vấn chi tiết và báo giá phù
+                                        hợp.
                                     </p>
                                 </Card>
                             </Col>

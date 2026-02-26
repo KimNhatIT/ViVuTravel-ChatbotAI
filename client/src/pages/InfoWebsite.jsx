@@ -17,10 +17,11 @@ function InfoWebsite() {
                     </div>
                     <div className="container mx-auto px-4 relative z-10 text-center">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                            Khám Phá Thế Giới Cùng TourDuLich.vn
+                            Khám Phá Thế Giới Cùng ViVuTravel
                         </h1>
                         <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-                            Đồng hành cùng bạn trong mỗi hành trình khám phá những điểm đến tuyệt vời
+                            ViVuTravel – người bạn đồng hành đáng tin cậy trên mọi hành trình, giúp bạn chạm đến những
+                            trải nghiệm du lịch đáng nhớ nhất.
                         </p>
                     </div>
                 </section>
@@ -36,15 +37,19 @@ function InfoWebsite() {
 
                             <div className="prose prose-lg mx-auto text-gray-600">
                                 <p className="mb-6">
-                                    <strong className="text-blue-700">TourDuLich.vn</strong> là nền tảng đặt tour du
-                                    lịch trực tuyến hàng đầu Việt Nam, giúp bạn khám phá những điểm đến tuyệt vời trong
-                                    và ngoài nước một cách dễ dàng, nhanh chóng và an toàn.
+                                    <strong className="text-blue-700">ViVuTravel</strong> là nền tảng đặt tour du lịch
+                                    trực tuyến hiện đại, được xây dựng với mục tiêu mang đến cho khách hàng trải nghiệm
+                                    đặt tour nhanh chóng, minh bạch và an toàn.
+                                </p>
+                                <p className="mb-6">
+                                    Chúng tôi kết nối bạn với hàng trăm hành trình hấp dẫn trong và ngoài nước, từ những
+                                    chuyến nghỉ dưỡng thư giãn, khám phá thiên nhiên kỳ vĩ đến các tour trải nghiệm văn
+                                    hóa độc đáo.
                                 </p>
                                 <p>
-                                    Với hơn 10 năm kinh nghiệm trong ngành du lịch, chúng tôi tự hào mang đến cho khách
-                                    hàng những dịch vụ chất lượng cao cùng trải nghiệm đặt tour trực tuyến thuận tiện
-                                    nhất. Đội ngũ nhân viên chuyên nghiệp, tận tâm của chúng tôi luôn sẵn sàng hỗ trợ
-                                    bạn 24/7 để đảm bảo chuyến đi của bạn trở nên trọn vẹn.
+                                    Với đội ngũ vận hành chuyên nghiệp và hệ thống quản lý thông minh, ViVuTravel cam
+                                    kết đem đến dịch vụ chất lượng cao, hỗ trợ tận tâm và sự an tâm tuyệt đối trong suốt
+                                    hành trình của bạn.
                                 </p>
                             </div>
                         </div>
@@ -79,8 +84,8 @@ function InfoWebsite() {
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Đa dạng tour</h3>
                                 <p className="text-gray-600">
-                                    Hàng trăm tour trong nước & quốc tế, phù hợp mọi nhu cầu và ngân sách của khách
-                                    hàng.
+                                    Mang đến hệ thống tour phong phú từ nội địa đến quốc tế, liên tục cập nhật những
+                                    điểm đến mới và xu hướng du lịch hấp dẫn nhất.
                                 </p>
                             </div>
 
@@ -103,8 +108,8 @@ function InfoWebsite() {
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Đặt tour dễ dàng</h3>
                                 <p className="text-gray-600">
-                                    Giao diện thân thiện, thao tác nhanh chóng chỉ với vài cú click, tiết kiệm thời gian
-                                    tối đa.
+                                    Quy trình đặt tour tối ưu, thao tác đơn giản, giúp bạn hoàn tất đăng ký chỉ trong
+                                    vài phút.
                                 </p>
                             </div>
 
@@ -127,8 +132,8 @@ function InfoWebsite() {
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Thanh toán an toàn</h3>
                                 <p className="text-gray-600">
-                                    Hỗ trợ nhiều hình thức thanh toán bảo mật, đảm bảo an toàn tuyệt đối cho giao dịch
-                                    của bạn.
+                                    Tích hợp nhiều phương thức thanh toán bảo mật cao, đảm bảo mọi giao dịch được thực
+                                    hiện an toàn và minh bạch.
                                 </p>
                             </div>
 
@@ -151,7 +156,7 @@ function InfoWebsite() {
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Hỗ trợ tận tâm</h3>
                                 <p className="text-gray-600">
-                                    Đội ngũ tư vấn viên chuyên nghiệp, sẵn sàng hỗ trợ 24/7 cho mọi thắc mắc của bạn.
+                                    Đội ngũ chăm sóc khách hàng chuyên nghiệp, luôn sẵn sàng hỗ trợ và tư vấn 24/7.
                                 </p>
                             </div>
 
@@ -174,8 +179,8 @@ function InfoWebsite() {
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Ưu đãi hấp dẫn</h3>
                                 <p className="text-gray-600">
-                                    Nhiều chương trình khuyến mãi, giảm giá đặc biệt quanh năm cho các tour trong và
-                                    ngoài nước.
+                                    Liên tục triển khai chương trình khuyến mãi, giảm giá đặc biệt và quà tặng hấp dẫn
+                                    dành cho khách hàng.
                                 </p>
                             </div>
 
@@ -198,7 +203,8 @@ function InfoWebsite() {
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-800 mb-2">Chất lượng đảm bảo</h3>
                                 <p className="text-gray-600">
-                                    Cam kết mang đến những trải nghiệm du lịch chất lượng cao với giá thành hợp lý nhất.
+                                    Cam kết cung cấp dịch vụ đúng mô tả, đối tác uy tín và trải nghiệm thực tế vượt mong
+                                    đợi.
                                 </p>
                             </div>
                         </div>
@@ -212,18 +218,17 @@ function InfoWebsite() {
                             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl shadow-lg border border-blue-100">
                                 <h3 className="text-2xl font-bold text-blue-700 mb-4">Sứ mệnh</h3>
                                 <p className="text-gray-700">
-                                    Chúng tôi mong muốn mang đến cho khách hàng những trải nghiệm du lịch trọn vẹn, tiện
-                                    lợi và đáng nhớ nhất. TourDuLich.vn cam kết cung cấp các tour chất lượng, giá cả
-                                    minh bạch, dịch vụ tận tâm và hỗ trợ khách hàng 24/7.
+                                    ViVuTravel ra đời với sứ mệnh giúp mọi người tiếp cận du lịch một cách dễ dàng, tiện
+                                    lợi và an toàn hơn bao giờ hết. Chúng tôi không chỉ bán tour – chúng tôi mang đến
+                                    những trải nghiệm, kỷ niệm và giá trị lâu dài cho mỗi hành trình của khách hàng.
                                 </p>
                             </div>
 
                             <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl shadow-lg border border-purple-100">
                                 <h3 className="text-2xl font-bold text-purple-700 mb-4">Tầm nhìn</h3>
                                 <p className="text-gray-700">
-                                    Trở thành nền tảng du lịch trực tuyến được yêu thích nhất tại Việt Nam, kết nối hàng
-                                    triệu du khách với những hành trình mơ ước trên khắp thế giới, và đóng góp vào sự
-                                    phát triển của ngành du lịch Việt Nam.
+                                    Trở thành nền tảng du lịch trực tuyến hàng đầu Việt Nam, ứng dụng công nghệ hiện đại
+                                    để kết nối hàng triệu du khách với những hành trình mơ ước trên khắp thế giới.
                                 </p>
                             </div>
                         </div>
@@ -243,7 +248,8 @@ function InfoWebsite() {
                                 <div className="md:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white">
                                     <h3 className="text-2xl font-bold mb-4">Thông tin liên hệ</h3>
                                     <p className="mb-6">
-                                        Nếu bạn cần tư vấn hoặc hỗ trợ, vui lòng liên hệ với chúng tôi:
+                                        Nếu bạn cần tư vấn hoặc hỗ trợ về tour, thanh toán hoặc bất kỳ vấn đề nào liên
+                                        quan đến chuyến đi, đội ngũ ViVuTravel luôn sẵn sàng đồng hành cùng bạn.
                                     </p>
 
                                     <div className="space-y-4">
@@ -268,7 +274,7 @@ function InfoWebsite() {
                                                     href="mailto:hotro@tourdulich.vn"
                                                     className="text-white hover:text-blue-200 transition-colors"
                                                 >
-                                                    hotro@tourdulich.vn
+                                                    hotro@vivutravel.vn
                                                 </a>
                                             </div>
                                         </div>
@@ -322,7 +328,9 @@ function InfoWebsite() {
                                             </svg>
                                             <div>
                                                 <p className="text-blue-200">Địa chỉ:</p>
-                                                <p className="text-white">123 Đường Du Lịch, Quận 1, TP. Hồ Chí Minh</p>
+                                                <p className="text-white">
+                                                    459 Tôn Đức Thắng, Phường Hòa Khánh, Đà Nẵng{' '}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

@@ -115,104 +115,106 @@ function Banner() {
     };
 
     return (
-        <section className="relative h-[75vh] overflow-hidden">
-            <Slider {...sliderSettings} className="h-full">
-                {bannerData.map((slide, index) => (
-                    <div key={slide.id} className="relative h-full">
-                        {/* Full Width Image */}
-                        <img src={slide.image} alt={`Banner ${slide.id}`} />
+        <section className="relative">
+            {/* Banner Slider */}
+            <div className="relative h-[65vh] min-h-[450px] overflow-hidden">
+                <Slider {...sliderSettings} className="h-full">
+                    {bannerData.map((slide) => (
+                        <div key={slide.id} className="relative h-[65vh] min-h-[450px]">
+                            <img src={slide.image} alt={`Banner ${slide.id}`} className="w-full h-full object-cover" />
 
-                        {/* Overlay Gradients */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-transparent"></div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-
-                        {/* Content Overlay */}
-                    </div>
-                ))}
-            </Slider>
-
-            {/* Search Form Card */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-[100%] max-w-7xl">
-                <Card className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl border-0 overflow-hidden">
-                    <div className="p-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-                            {/* Destination */}
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 flex items-center">
-                                    <EnvironmentOutlined className="mr-1" />
-                                    Điểm đến
-                                </label>
-                                <Select
-                                    placeholder="Chọn điểm đến"
-                                    size="large"
-                                    className="w-full"
-                                    showSearch
-                                    onChange={(value) => setSelectedDestination(value)}
-                                >
-                                    {destinations.map((destination) => (
-                                        <Option value={destination}>{destination}</Option>
-                                    ))}
-                                </Select>
-                            </div>
-
-                            {/* Date Range */}
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 flex items-center">
-                                    <CalendarOutlined className="mr-1" />
-                                    Ngày khởi hành
-                                </label>
-                                <RangePicker
-                                    size="large"
-                                    className="w-full"
-                                    placeholder={['Ngày đi sớm nhất', 'Ngày đi muộn nhất']}
-                                    format="DD/MM/YYYY"
-                                    value={date}
-                                    onChange={(value) => setDate(value)}
-                                    disabledDate={(current) => {
-                                        return current && current < moment().startOf('day');
-                                    }}
-                                />
-                            </div>
-
-                            {/* Guests */}
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 flex items-center">
-                                    <UserOutlined className="mr-1" />
-                                    Số khách
-                                </label>
-                                <Select
-                                    placeholder="Chọn số khách"
-                                    size="large"
-                                    className="w-full"
-                                    onChange={(value) => setGuests(value)}
-                                >
-                                    <Option value="1">1 người</Option>
-                                    <Option value="2">2 người</Option>
-                                    <Option value="3-5">3-5 người</Option>
-                                    <Option value="6-10">6-10 người</Option>
-                                    <Option value="10+">Trên 10 người</Option>
-                                </Select>
-                            </div>
-
-                            {/* Search Button */}
-                            <div className="lg:col-span-1">
-                                <Button
-                                    type="primary"
-                                    size="large"
-                                    icon={<SearchOutlined />}
-                                    onClick={handleSearch}
-                                    loading={loading}
-                                    className="w-full bg-gradient-to-r from-[#FF3B2F] to-[#FF6F4A] hover:from-[#E62E24] hover:to-[#FF5A3D] border-0 rounded-lg h-12 font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                                >
-                                    {loading ? 'Đang tìm...' : 'Tìm Tour'}
-                                </Button>
-                            </div>
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-black/35"></div>
                         </div>
-                    </div>
-                </Card>
+                    ))}
+                </Slider>
             </div>
 
-            {/* Scroll Indicator */}
+            {/* Search Form - floating */}
+            <div className="relative z-20 -mt-16 px-4">
+                <div className="max-w-6xl mx-auto">
+                    <Card className="bg-white shadow-2xl rounded-2xl border-0">
+                        <div className="p-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+                                {/* Destination */}
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-700 flex items-center">
+                                        <EnvironmentOutlined className="mr-1" />
+                                        Điểm đến
+                                    </label>
+                                    <Select
+                                        placeholder="Chọn điểm đến"
+                                        size="large"
+                                        className="w-full"
+                                        showSearch
+                                        onChange={(value) => setSelectedDestination(value)}
+                                    >
+                                        {destinations.map((destination) => (
+                                            <Option key={destination} value={destination}>
+                                                {destination}
+                                            </Option>
+                                        ))}
+                                    </Select>
+                                </div>
+
+                                {/* Date */}
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-700 flex items-center">
+                                        <CalendarOutlined className="mr-1" />
+                                        Ngày khởi hành
+                                    </label>
+                                    <RangePicker
+                                        size="large"
+                                        className="w-full"
+                                        placeholder={['Ngày đi', 'Ngày về']}
+                                        format="DD/MM/YYYY"
+                                        value={date}
+                                        onChange={(value) => setDate(value)}
+                                        disabledDate={(current) => current && current < moment().startOf('day')}
+                                    />
+                                </div>
+
+                                {/* Guests */}
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-gray-700 flex items-center">
+                                        <UserOutlined className="mr-1" />
+                                        Số khách
+                                    </label>
+                                    <Select
+                                        placeholder="Chọn số khách"
+                                        size="large"
+                                        className="w-full"
+                                        onChange={(value) => setGuests(value)}
+                                    >
+                                        <Option value="1">1 người</Option>
+                                        <Option value="2">2 người</Option>
+                                        <Option value="3-5">3-5 người</Option>
+                                        <Option value="6-10">6-10 người</Option>
+                                        <Option value="10+">Trên 10 người</Option>
+                                    </Select>
+                                </div>
+
+                                {/* Button */}
+                                <div>
+                                    <Button
+                                        type="primary"
+                                        size="large"
+                                        icon={<SearchOutlined />}
+                                        onClick={handleSearch}
+                                        loading={loading}
+                                        className="w-full bg-gradient-to-r from-[#FF3B2F] to-[#FF6F4A] border-0 rounded-lg h-12 font-semibold shadow-lg hover:scale-105 transition-all duration-300"
+                                    >
+                                        {loading ? 'Đang tìm...' : 'Tìm Tour'}
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+            </div>
+
+            {/* Khoảng cách để không đè section dưới */}
+            <div className="h-24"></div>
         </section>
     );
 }
