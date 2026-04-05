@@ -29,7 +29,7 @@ function RegisterUser() {
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
-            navigate('/');
+            navigate('/login');
         } catch (error) {
             toast.error(error.response.data.message);
             setLoading(false);
@@ -49,7 +49,7 @@ function RegisterUser() {
                         <div className="hidden lg:flex lg:w-1/2 h-auto">
                             <div className="relative w-full h-full">
                                 <img
-                                    src="https://static.ecosite.vn/9588/product/2018/11/01/taucaotocmotchieugiuadaophiphiphuket-1541060640.jpg"
+                                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
                                     alt="Tour du lịch"
                                     className="rounded-l-xl shadow-lg object-cover w-full h-full"
                                 />
@@ -137,7 +137,7 @@ function RegisterUser() {
                                         />
                                     </Form.Item>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <Form.Item name="phone">
                                             <Input
                                                 prefix={<PhoneOutlined className="text-gray-400" />}
@@ -153,7 +153,7 @@ function RegisterUser() {
                                                 className="rounded-md"
                                             />
                                         </Form.Item>
-                                    </div>
+                                    </div> */}
 
                                     <Form.Item name="typeLogin" hidden>
                                         <Input type="hidden" />

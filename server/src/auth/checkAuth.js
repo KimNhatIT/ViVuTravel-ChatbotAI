@@ -17,8 +17,6 @@ const authUser = async (req, res, next) => {
         req.user = decoded;
         next();
     } catch (error) {
-        console.log(error);
-
         next(error);
     }
 };

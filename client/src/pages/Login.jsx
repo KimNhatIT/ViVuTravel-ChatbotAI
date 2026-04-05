@@ -55,14 +55,15 @@ function LoginUser() {
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col lg:flex-row items-stretch max-w-6xl mx-auto">
                         {/* Phần hình ảnh */}
-                        <div className="hidden lg:flex lg:w-1/2 h-auto">
-                            <div className="relative w-full h-full">
+                        <div className="hidden lg:flex lg:w-1/2">
+                            <div className="relative w-full">
                                 <img
-                                    src="https://static.ecosite.vn/9588/product/2018/11/01/taucaotocmotchieugiuadaophiphiphuket-1541060640.jpg"
+                                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
                                     alt="Tour du lịch"
-                                    className="rounded-l-xl shadow-lg object-cover w-full h-full"
+                                    className="rounded-l-xl shadow-lg object-cover w-full h-full min-h-[500px]"
                                 />
-                                <div className="absolute inset-0 bg-blue-500 opacity-20 rounded-l-xl"></div>
+                                <div className="absolute inset-0 bg-blue-500/20 rounded-l-xl"></div>
+
                                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                                     <h2 className="text-3xl font-bold shadow-text">Chào mừng trở lại</h2>
                                     <p className="text-xl mt-2 shadow-text">
@@ -87,6 +88,7 @@ function LoginUser() {
                                     onFinish={onFinish}
                                     layout="vertical"
                                     size="large"
+                                    autoComplete="off" // 1. Thêm thuộc tính này vào Form
                                 >
                                     <Form.Item
                                         name="email"
@@ -96,6 +98,7 @@ function LoginUser() {
                                             prefix={<UserOutlined className="text-gray-400" />}
                                             placeholder="Email"
                                             className="rounded-md"
+                                            autoComplete="off" // 2. Thêm vào Input Email
                                         />
                                     </Form.Item>
 
@@ -107,6 +110,7 @@ function LoginUser() {
                                             prefix={<LockOutlined className="text-gray-400" />}
                                             placeholder="Mật khẩu"
                                             className="rounded-md"
+                                            autoComplete="new-password" // 3. Dùng "new-password" cho Input Password để chặn Chrome
                                         />
                                     </Form.Item>
 

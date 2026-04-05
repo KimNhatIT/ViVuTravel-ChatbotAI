@@ -47,7 +47,7 @@ function Contact() {
         {
             icon: <PhoneOutlined className="text-2xl text-blue-600" />,
             title: 'Điện Thoại',
-            details: ['+84 24 1234 5678', '+84 24 8765 4321'],
+            details: ['+84 84256535', '+84 384354638'],
             description: 'Hỗ trợ 24/7',
         },
         {
@@ -59,7 +59,7 @@ function Contact() {
         {
             icon: <EnvironmentOutlined className="text-2xl text-red-600" />,
             title: 'Địa Chỉ',
-            details: ['123 Đường ABC, Quận 1', 'TP. Hồ Chí Minh, Việt Nam'],
+            details: ['459 Tôn Đức Thắng, Phường Hòa Khánh','TP. Đà Nẵng, Việt Nam'],
             description: 'Trung tâm thành phố',
         },
         {

@@ -108,7 +108,7 @@ const SendMailForgotPassword = async (email, otp) => {
                     </div>
                     <div class="footer">
                         Trân trọng,<br/>
-                        <strong>Moho</strong>
+                        <strong>ViVu Travel</strong>
                     </div>
                 </div>
             </body>

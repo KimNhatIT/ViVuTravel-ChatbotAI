@@ -57,7 +57,13 @@ export default function Footer() {
                         <li>📍 459 Tôn Đức Thắng, Phường Hòa Khánh, Đà Nẵng</li>
                         <li>📞 1900 1234</li>
                         <li>✉️ hotro@vivutravel.vn</li>
-                        <li>🕒 08:00 - 22:00 (T2 - CN)</li>
+                        <li>
+                            🕒 Giờ làm việc:
+                            <ul>
+                                <li>Thứ 2 – Thứ 6: 08:00 – 18:00</li>
+                                <li>Thứ 7 – Chủ nhật: 09:00 – 17:00</li>
+                            </ul>
+                        </li>
                     </ul>
                 </motion.div>
 

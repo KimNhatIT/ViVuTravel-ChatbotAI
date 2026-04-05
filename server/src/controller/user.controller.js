@@ -228,3 +228,11 @@ class UserController {
 }
 
 module.exports = new UserController();
+
+
+// {
+//   "title": "Tour Đà Nẵng 3 ngày 2 đêm",
+//   "price": 3500000,
+//   "destination": "Đà Nẵng,Hội An",
+//   "description": "Khám phá thành phố biển Đà Nẵng năng động"
+// }

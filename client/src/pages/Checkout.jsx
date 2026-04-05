@@ -290,9 +290,9 @@ function Checkout() {
                                             <div className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 transition-colors">
                                                 <div className="flex items-center gap-2">
                                                     <img
-                                                        src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
-                                                        alt=""
-                                                        className="w-6 h-6"
+                                                        src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png"
+                                                        alt="MoMo"
+                                                        className="w-6 h-6 object-contain"
                                                     />
                                                     <div className="font-semibold text-gray-800">MoMo</div>
 

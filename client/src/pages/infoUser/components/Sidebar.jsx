@@ -76,6 +76,7 @@ function Sidebar({ activeTab, setActiveTab, isOpen, onToggle }) {
                             <Avatar
                                 size={100}
                                 src={
+                                    // eslint-disable-next-line no-constant-binary-expression
                                     `${import.meta.env.VITE_API_URL}/uploads/avatars/${dataUser?.avatar}` ||
                                     'https://via.placeholder.com/100'
                                 }

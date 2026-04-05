@@ -340,13 +340,10 @@ function InfoWebsite() {
                                     <h3 className="text-2xl font-bold text-gray-800 mb-4">Giờ làm việc</h3>
                                     <div className="space-y-3 text-gray-600">
                                         <p>
-                                            <span className="font-semibold">Thứ Hai - Thứ Sáu:</span> 8:00 - 18:00
+                                            <span className="font-semibold">Thứ 2 - Thứ 6:</span> 8:00 - 18:00
                                         </p>
                                         <p>
-                                            <span className="font-semibold">Thứ Bảy:</span> 8:00 - 12:00
-                                        </p>
-                                        <p>
-                                            <span className="font-semibold">Chủ Nhật:</span> Nghỉ
+                                            <span className="font-semibold">Thứ 7 - CN:</span> 9:00 - 17:00
                                         </p>
                                     </div>
 

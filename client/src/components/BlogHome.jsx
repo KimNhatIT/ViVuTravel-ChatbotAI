@@ -83,7 +83,7 @@ function BlogHome() {
                         <span className="font-semibold">Blog du lịch</span>
                     </div>
                     <Title level={2} className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                        Khám phá thế giới cùng chúng tôi
+                        Khám phá cùng ViVuTravel
                     </Title>
                     <Text className="text-gray-600 text-lg max-w-2xl mx-auto">
                         Những câu chuyện, kinh nghiệm và mẹo hay cho chuyến du lịch của bạn
@@ -163,7 +163,7 @@ function BlogHome() {
                 {/* View All Button */}
                 {blogs.length > 6 && (
                     <div className="text-center mt-12">
-                        <Link to="/blogs">
+                        <Link to="/blog">
                             <Button
                                 size="large"
                                 className="bg-white border-2 border-[#FF3B2F] text-[#FF3B2F] hover:bg-[#FF3B2F] hover:text-white font-semibold px-8 py-2 h-12 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"

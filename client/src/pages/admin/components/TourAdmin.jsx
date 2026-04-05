@@ -721,7 +721,7 @@ function TourManager() {
                                         <div className="grid grid-cols-3 gap-4">
                                             <Form.Item
                                                 {...restField}
-                                                label="Giá người lớn"
+                                                label="Giá người lớn (Từ 12 tuổi)"
                                                 name={[name, 'price_adult']}
                                                 rules={[{ required: true, message: 'Vui lòng nhập giá!' }]}
                                             >
@@ -736,7 +736,11 @@ function TourManager() {
                                                 />
                                             </Form.Item>
 
-                                            <Form.Item {...restField} label="Giá trẻ em" name={[name, 'price_child']}>
+                                            <Form.Item
+                                                {...restField}
+                                                label="Giá trẻ em (Từ 2-11 tuổi)"
+                                                name={[name, 'price_child']}
+                                            >
                                                 <InputNumber
                                                     min={0}
                                                     style={{ width: '100%' }}
@@ -748,7 +752,11 @@ function TourManager() {
                                                 />
                                             </Form.Item>
 
-                                            <Form.Item {...restField} label="Giá em bé" name={[name, 'price_baby']}>
+                                            <Form.Item
+                                                {...restField}
+                                                label="Giá em bé (Dưới 2 tuổi)"
+                                                name={[name, 'price_baby']}
+                                            >
                                                 <InputNumber
                                                     min={0}
                                                     style={{ width: '100%' }}
