@@ -14,6 +14,13 @@ class CartService {
         const schedule = product.departureSchedules.id(departureScheduleId);
         if (!schedule) throw new BadRequestError('Đợt khởi hành không tồn tại');
 
+        const totalSeatsRequested = (quantity?.adult || 0) + (quantity?.child || 0) + (quantity?.baby || 0);
+
+        // Validate không vượt quá số chỗ còn lại
+        if (totalSeatsRequested > schedule.seatsAvailable) {
+            throw new BadRequestError('Số lượng khách vượt quá số chỗ còn lại');
+        }
+
         const flashSale = await FlashSale.findOne({ productId });
 
         // Tính giá
@@ -138,6 +145,20 @@ class CartService {
 
         const item = cart.items.id(itemId);
         if (!item) throw new BadRequestError('Item không tồn tại');
+
+        const totalSeatsRequested = (quantity?.adult || 0) + (quantity?.child || 0) + (quantity?.baby || 0);
+
+        // Validate theo seatsAvailable hiện tại
+        const product = await Product.findById(item.product);
+        const schedule = product?.departureSchedules?.id(item.departureScheduleId);
+
+        if (!product || !schedule) {
+            throw new BadRequestError('Đợt khởi hành không tồn tại');
+        }
+
+        if (totalSeatsRequested > schedule.seatsAvailable) {
+            throw new BadRequestError('Số lượng khách vượt quá số chỗ còn lại');
+        }
 
         // Cập nhật số lượng
         item.quantity = quantity;

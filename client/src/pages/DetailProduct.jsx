@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { requestGetTourById } from '../config/TourRequest';
 import { requestCreateCart } from '../config/CartRequest';
@@ -104,7 +104,11 @@ function DetailProduct() {
         }).format(price);
     };
 
-    // Helper function to truncate HTML content
+    // Hàm cắt ngắn nội dung mô tả nếu nó quá dài,
+    // và thêm dấu "..." vào cuối nếu bị cắt.
+    // Nó cũng loại bỏ các thẻ HTML để đếm số ký tự thực tế,
+    // tránh việc cắt giữa chừng
+
     const truncateHTMLContent = (htmlContent, maxLength = 300) => {
         if (!htmlContent) return '';
 
@@ -123,7 +127,8 @@ function DetailProduct() {
         return finalText + '...';
     };
 
-    // Handle booking modal
+    // Handle booking modal làm nhiệm vụ mở modal đặt tour
+    // khi người dùng click vào nút "Đặt tour".
     const handleBookTour = (schedule = null) => {
         if (!dataUser?._id) {
             toast.warning('Vui lòng đăng nhập để đặt tour!');
@@ -181,15 +186,25 @@ function DetailProduct() {
         try {
             setBookingLoading(true);
 
+            const quantity = {
+                adult: values.adult || 0,
+                child: values.child || 0,
+                baby: values.baby || 0,
+            };
+
+            const totalSeatsRequested = quantity.adult + (quantity.child || 0) + (quantity.baby || 0);
+
+            // Guard cuối cùng ngay tại client
+            if (selectedSchedule && totalSeatsRequested > selectedSchedule.seatsAvailable) {
+                toast.error('Số lượng khách vượt quá số chỗ còn lại');
+                return;
+            }
+
             const bookingData = {
                 userId: dataUser._id,
                 departureScheduleId: selectedSchedule._id,
                 productId: product._id,
-                quantity: {
-                    adult: values.adult || 0,
-                    child: values.child || 0,
-                    baby: values.baby || 0,
-                },
+                quantity,
             };
 
             await requestCreateCart(bookingData);
@@ -1016,6 +1031,21 @@ function DetailProduct() {
                             <div className="space-y-4 mb-6">
                                 <div className="text-lg font-semibold text-gray-800 mb-4">Chọn số lượng khách</div>
 
+                                {/* seatsAvailable guard (backend đã validate nhưng UI cũng chặn trước) 
+                                    // Hiển thị số chỗ còn lại để người dùng biết giới hạn
+                                    //  khi chọn số lượng
+                                */}
+                                {selectedSchedule && (
+                                    <div className="mb-4 text-sm">
+                                        <span className="font-semibold text-gray-700">Còn </span>
+                                        <span className="font-bold text-green-700">
+                                            {selectedSchedule.seatsAvailable}
+                                        </span>
+                                        <span className="font-semibold text-gray-700"> chỗ</span>
+                                        <span className="text-gray-500"> • Tổng adult+child+baby không vượt quá.</span>
+                                    </div>
+                                )}
+
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     {/* Adults */}
                                     <div className="p-4 border border-gray-200 rounded-xl hover:border-blue-300 transition-colors">
@@ -1025,26 +1055,48 @@ function DetailProduct() {
                                                 <div className="text-sm text-gray-500">Từ 12 tuổi trở lên</div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-between">
-                                            <Form.Item name="adult" className="mb-0">
-                                                <InputNumber
-                                                    min={1}
-                                                    max={10}
-                                                    size="large"
-                                                    className="w-20"
-                                                    controls={{
-                                                        upIcon: <Plus className="w-3 h-3" />,
-                                                        downIcon: <Minus className="w-3 h-3" />,
-                                                    }}
-                                                />
-                                            </Form.Item>
-                                            <div className="text-right">
-                                                <div className="text-sm text-gray-500">Giá</div>
-                                                <div className="font-bold text-red-600">
-                                                    {formatPrice(selectedSchedule.price.adult)}
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        <Form.Item
+                                            shouldUpdate={(prev, cur) =>
+                                                prev.adult !== cur.adult ||
+                                                prev.child !== cur.child ||
+                                                prev.baby !== cur.baby
+                                            }
+                                            noStyle
+                                        >
+                                            {({ getFieldValue }) => {
+                                                const seatsAvailable = selectedSchedule?.seatsAvailable ?? 0;
+                                                const child = getFieldValue('child') || 0;
+                                                const baby = getFieldValue('baby') || 0;
+                                                const adultMax = Math.max(0, seatsAvailable - child - baby);
+
+                                                return (
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex-1">
+                                                            <div className="sr-only">Người lớn</div>
+                                                            <Form.Item name="adult" className="mb-0">
+                                                                <InputNumber
+                                                                    min={1}
+                                                                    max={adultMax}
+                                                                    size="large"
+                                                                    className="w-20"
+                                                                    controls={{
+                                                                        upIcon: <Plus className="w-3 h-3" />,
+                                                                        downIcon: <Minus className="w-3 h-3" />,
+                                                                    }}
+                                                                />
+                                                            </Form.Item>
+                                                        </div>
+                                                        <div className="text-right">
+                                                            <div className="text-sm text-gray-500">Giá</div>
+                                                            <div className="font-bold text-red-600">
+                                                                {formatPrice(selectedSchedule.price.adult)}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            }}
+                                        </Form.Item>
                                     </div>
 
                                     {/* Children */}
@@ -1055,26 +1107,48 @@ function DetailProduct() {
                                                 <div className="text-sm text-gray-500">Từ 2-11 tuổi</div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-between">
-                                            <Form.Item name="child" className="mb-0">
-                                                <InputNumber
-                                                    min={0}
-                                                    max={10}
-                                                    size="large"
-                                                    className="w-20"
-                                                    controls={{
-                                                        upIcon: <Plus className="w-3 h-3" />,
-                                                        downIcon: <Minus className="w-3 h-3" />,
-                                                    }}
-                                                />
-                                            </Form.Item>
-                                            <div className="text-right">
-                                                <div className="text-sm text-gray-500">Giá</div>
-                                                <div className="font-bold text-red-600">
-                                                    {formatPrice(selectedSchedule.price.child)}
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        <Form.Item
+                                            shouldUpdate={(prev, cur) =>
+                                                prev.adult !== cur.adult ||
+                                                prev.child !== cur.child ||
+                                                prev.baby !== cur.baby
+                                            }
+                                            noStyle
+                                        >
+                                            {({ getFieldValue }) => {
+                                                const seatsAvailable = selectedSchedule?.seatsAvailable ?? 0;
+                                                const adult = getFieldValue('adult') || 0;
+                                                const baby = getFieldValue('baby') || 0;
+                                                const childMax = Math.max(0, seatsAvailable - adult - baby);
+
+                                                return (
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex-1">
+                                                            <div className="sr-only">Trẻ em</div>
+                                                            <Form.Item name="child" className="mb-0">
+                                                                <InputNumber
+                                                                    min={0}
+                                                                    max={childMax}
+                                                                    size="large"
+                                                                    className="w-20"
+                                                                    controls={{
+                                                                        upIcon: <Plus className="w-3 h-3" />,
+                                                                        downIcon: <Minus className="w-3 h-3" />,
+                                                                    }}
+                                                                />
+                                                            </Form.Item>
+                                                        </div>
+                                                        <div className="text-right">
+                                                            <div className="text-sm text-gray-500">Giá</div>
+                                                            <div className="font-bold text-red-600">
+                                                                {formatPrice(selectedSchedule.price.child)}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            }}
+                                        </Form.Item>
                                     </div>
 
                                     {/* Babies */}
@@ -1085,26 +1159,48 @@ function DetailProduct() {
                                                 <div className="text-sm text-gray-500">Dưới 2 tuổi</div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-between">
-                                            <Form.Item name="baby" className="mb-0">
-                                                <InputNumber
-                                                    min={0}
-                                                    max={10}
-                                                    size="large"
-                                                    className="w-20"
-                                                    controls={{
-                                                        upIcon: <Plus className="w-3 h-3" />,
-                                                        downIcon: <Minus className="w-3 h-3" />,
-                                                    }}
-                                                />
-                                            </Form.Item>
-                                            <div className="text-right">
-                                                <div className="text-sm text-gray-500">Giá</div>
-                                                <div className="font-bold text-red-600">
-                                                    {formatPrice(selectedSchedule.price.baby)}
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        <Form.Item
+                                            shouldUpdate={(prev, cur) =>
+                                                prev.adult !== cur.adult ||
+                                                prev.child !== cur.child ||
+                                                prev.baby !== cur.baby
+                                            }
+                                            noStyle
+                                        >
+                                            {({ getFieldValue }) => {
+                                                const seatsAvailable = selectedSchedule?.seatsAvailable ?? 0;
+                                                const adult = getFieldValue('adult') || 0;
+                                                const child = getFieldValue('child') || 0;
+                                                const babyMax = Math.max(0, seatsAvailable - adult - child);
+
+                                                return (
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex-1">
+                                                            <div className="sr-only">Em bé</div>
+                                                            <Form.Item name="baby" className="mb-0">
+                                                                <InputNumber
+                                                                    min={0}
+                                                                    max={babyMax}
+                                                                    size="large"
+                                                                    className="w-20"
+                                                                    controls={{
+                                                                        upIcon: <Plus className="w-3 h-3" />,
+                                                                        downIcon: <Minus className="w-3 h-3" />,
+                                                                    }}
+                                                                />
+                                                            </Form.Item>
+                                                        </div>
+                                                        <div className="text-right">
+                                                            <div className="text-sm text-gray-500">Giá</div>
+                                                            <div className="font-bold text-red-600">
+                                                                {formatPrice(selectedSchedule.price.baby)}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            }}
+                                        </Form.Item>
                                     </div>
                                 </div>
                             </div>
@@ -1113,6 +1209,10 @@ function DetailProduct() {
                             <Form.Item noStyle shouldUpdate>
                                 {(form) => {
                                     const values = form.getFieldsValue();
+                                    const adult = values.adult || 0;
+                                    const child = values.child || 0;
+                                    const baby = values.baby || 0;
+                                    const totalGuests = adult + child + baby;
                                     const totalPrice = calculateTotalPrice(values);
 
                                     return (
@@ -1125,10 +1225,15 @@ function DetailProduct() {
                                                     </div>
                                                     {totalPrice > 0 && (
                                                         <div className="text-sm text-gray-500 mt-1">
-                                                            {values.adult || 0} người lớn, {values.child || 0} trẻ em,{' '}
-                                                            {values.baby || 0} em bé
+                                                            {adult} người lớn, {child} trẻ em, {baby} em bé
                                                         </div>
                                                     )}
+                                                    {selectedSchedule &&
+                                                        totalGuests > selectedSchedule.seatsAvailable && (
+                                                            <div className="text-sm font-semibold text-red-600 mt-2">
+                                                                Số lượng khách vượt quá số chỗ còn lại
+                                                            </div>
+                                                        )}
                                                 </div>
                                                 <div className="text-6xl opacity-20">💰</div>
                                             </div>

@@ -30,7 +30,9 @@ router.post('/reset-password', asyncHandler(userController.resetPassword));
 router.put('/change-password', authUser, asyncHandler(userController.changePassword));
 router.put('/update', authUser, asyncHandler(userController.updateUser));
 router.post('/upload-avatar', authUser, upload.single('avatar'), asyncHandler(userController.uploadAvatar));
+// Hàm tư vấn tour du lịch dựa trên danh sách tour hiện có và câu hỏi của khách hàng
 router.post('/chatbot', authUser, asyncHandler(userController.chatbot));
+// Hàm tư vấn tour du lịch dựa trên danh sách tour hiện có và câu hỏi của khách hàng
 router.get('/message-chatbot', authUser, asyncHandler(userController.getMessageChatbot));
 
 router.get('/admin/users', authUser, asyncHandler(userController.getAllUser));

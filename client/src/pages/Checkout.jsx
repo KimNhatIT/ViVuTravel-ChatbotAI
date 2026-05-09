@@ -97,6 +97,7 @@ function Checkout() {
                 const res = await requestCreatePayment(data);
                 window.location.href = res.metadata;
             } else {
+                console.log("Chưa chọn phương thức thanh toán");
             }
 
             // Simulate payment processing

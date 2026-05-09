@@ -54,23 +54,28 @@ class ProductController {
         const product = await ProductService.deleteProduct(id);
         new OK({ message: 'success', metadata: product }).send(res);
     }
-
+    // 1.Khi client gọi API xem chi tiết sản phẩm/tour
     async getProductById(req, res) {
+        // Bước 1: Lấy thông tin người dùng từ token để biết ai đang xem sản phẩm
         const { id } = req.params;
         const token = req.cookies.token;
 
         let user;
+        // Bước 2: Nếu có token, giải mã để lấy thông tin người dùng
         if (token) {
             const data = jwtDecode(token);
             const findUser = await modelUser.findOne({ _id: data.id });
             user = findUser;
         }
-
+        // Bước 3: Lấy thông tin sản phẩm theo id
         const product = await ProductService.getProductById(id);
+        //Bước 4: tạo payload để gửi qua socket thông báo ai
+        // đang xem sản phẩm này (dành cho admin)
         const data = {
             user: user?.fullName || 'Khách',
             productId: product?._id,
         };
+        // Bước 5: Gửi sự kiện đến admin để biết có ai đang xem sản phẩm này
         socketService.emitUsersWatchingProduct('usersWatchingProduct', data);
         new OK({ message: 'success', metadata: product }).send(res);
     }

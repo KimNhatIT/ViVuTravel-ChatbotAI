@@ -245,12 +245,12 @@ function SearchTour() {
                                             {guests === '1'
                                                 ? '1 người'
                                                 : guests === '2'
-                                                ? '2 người'
-                                                : guests === '3-5'
-                                                ? '3-5 người'
-                                                : guests === '6-10'
-                                                ? '6-10 người'
-                                                : 'Trên 10 người'}
+                                                  ? '2 người'
+                                                  : guests === '3-5'
+                                                    ? '3-5 người'
+                                                    : guests === '6-10'
+                                                      ? '6-10 người'
+                                                      : 'Trên 10 người'}
                                         </Tag>
                                     )}
                                 </div>

@@ -48,8 +48,8 @@ function Header() {
     // User dropdown menu
     const userMenuItems = [
         { key: 'profile', label: 'Thông tin cá nhân', href: '/info-user', onClick: () => navigateUser('/info-user') },
-        { key: 'bookings', label: 'Đặt chỗ của tôi', href: '/bookings', onClick: () => navigateUser('/bookings') },
-        { key: 'favorites', label: 'Tour yêu thích', href: '/favorites', onClick: () => navigateUser('/favorites') },
+        { key: 'bookings', label: 'Đặt chỗ của tôi', href: '/bookings', onClick: () => navigateUser('/info-user?tab=tour-history') },
+        { key: 'favorites', label: 'Tour yêu thích', href: '/favorites', onClick: () => navigateUser('/info-user?tab=favourite') },
         { key: 'logout', label: 'Đăng xuất', onClick: handleLogout },
     ];
 

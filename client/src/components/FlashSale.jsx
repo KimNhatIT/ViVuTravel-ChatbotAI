@@ -100,10 +100,11 @@ function FlashSale() {
 
                     {/* Countdown and CTA */}
                 </div>
-
-                {/* Flash Sale Items */}
+                
+                {/* Flash Sale Items  */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {flashSales.map((item) => (
+               
+                    {flashSales.slice(0, 12).map((item) => (
                         <div
                             key={item._id}
                             className="relative group transform transition-all duration-300 hover:-translate-y-2"

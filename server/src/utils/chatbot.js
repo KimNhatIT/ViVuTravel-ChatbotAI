@@ -1,3 +1,5 @@
+// AI platform: Groq
+//
 const Groq = require('groq-sdk');
 require('dotenv').config();
 
@@ -33,10 +35,12 @@ async function getTourBookings(productId) {
 // AI tư vấn tour du lịch
 async function askTourAssistant(question) {
     try {
+        // Lấy tất cả tour và thông tin đặt tour để cung cấp dữ liệu cho AI
         const tours = await Product.find({});
         let tourData = '';
 
         for (const tour of tours) {
+            // tính chỗ trống thực tế từ bookings
             const bookings = await getTourBookings(tour._id.toString());
 
             // Tính tổng số chỗ đã đặt cho mỗi lịch trình
@@ -46,6 +50,7 @@ async function askTourAssistant(question) {
                 if (!scheduleBookings[scheduleId]) {
                     scheduleBookings[scheduleId] = 0;
                 }
+                // Cộng số lượng người lớn, trẻ em, em bé đã đặt cho lịch trình này 
                 scheduleBookings[scheduleId] +=
                     (booking.quantity.adult || 0) + (booking.quantity.child || 0) + (booking.quantity.baby || 0);
             });
@@ -54,6 +59,7 @@ async function askTourAssistant(question) {
             let scheduleInfo = '';
             tour.departureSchedules.forEach((schedule, index) => {
                 const bookedSeats = scheduleBookings[schedule._id] || 0;
+                // Tính số chỗ còn trống 
                 const availableSeats = schedule.seatsAvailable - bookedSeats;
 
                 scheduleInfo += `
@@ -103,12 +109,13 @@ async function askTourAssistant(question) {
             - Ưu tiên tour có chỗ trống
             - Đưa ra lời khuyên thực tế về thời tiết, mùa du lịch
             `;
-
+        // Chỉ gọi API có sẵn của Groq, không sử dụng các hàm tùy chỉnh hoặc logic phức tạp khác 
         const completion = await groq.chat.completions.create({
             model: 'llama-3.3-70b-versatile',
             messages: [
                 {
                     role: 'system',
+                    // đóng vai trò là chuyên viên tư vấn tour du lịch chuyên nghiệp, thân thiện, luôn đặt lợi ích khách hàng lên hàng đầu
                     content:
                         'Bạn là chuyên viên tư vấn tour du lịch chuyên nghiệp, thân thiện, luôn đặt lợi ích khách hàng lên hàng đầu.',
                 },

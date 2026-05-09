@@ -7,12 +7,25 @@ import Sidebar from './components/Sidebar';
 import PersonalInfo from './components/PersonalInfo';
 import HistoryOrder from './components/HistoryOrder';
 import Favourite from './components/Favourite';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import ChangePassword from './components/ChangePassword';
 
 function InfoUser() {
     const [activeTab, setActiveTab] = useState('personal-info');
     const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const tab = params.get('tab');
+
+        if (tab) {
+            setActiveTab(tab);
+        }
+    }, [location.search]);
 
     const renderContent = () => {
         switch (activeTab) {

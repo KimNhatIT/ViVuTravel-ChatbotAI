@@ -6,7 +6,8 @@ const emitToUser = (userId, event, data) => {
         getIO().to(socketId).emit(event, data);
     }
 };
-
+    // 2. socketService phát event đến tất cả admin 
+    // để biết có ai đang xem sản phẩm này
 const emitToAll = (event, data) => {
     getIO().emit(event, data);
 };

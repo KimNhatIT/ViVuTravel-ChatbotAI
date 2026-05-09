@@ -26,9 +26,9 @@ function RegisterUser() {
             await requestRegister(values);
             toast.success('Đăng ký thành công!');
             setLoading(false);
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+            // setTimeout(() => {
+            //     window.location.reload();
+            // }, 1000);
             navigate('/login');
         } catch (error) {
             toast.error(error.response.data.message);

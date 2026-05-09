@@ -80,7 +80,7 @@ function Cart() {
         try {
             setUpdating((prev) => ({ ...prev, [itemId]: true }));
 
-            // Find current item
+            // tìm item hiện tại để lấy số lượng cũ
             const currentItem = cart.items.find((item) => item._id === itemId);
             if (!currentItem) return;
 
@@ -91,49 +91,25 @@ function Cart() {
                 [type]: newValue,
             };
 
-            // Prevent all quantities from being 0
+            // để tránh xóa item khi update số lượng về 0,
+            // người dùng phải xóa item bằng nút xóa
             if (newQuantity.adult === 0 && newQuantity.child === 0 && newQuantity.baby === 0) {
                 toast.warning('Cần ít nhất 1 người để giữ lại item');
                 return;
             }
 
-            // Update local state immediately
-            const updatedCart = {
-                ...cart,
-                items: cart.items.map((item) => {
-                    if (item._id === itemId) {
-                        const updatedQuantity = newQuantity;
-                        const newTotalPrice =
-                            updatedQuantity.adult * item.priceSnapshot.adult +
-                            updatedQuantity.child * item.priceSnapshot.child +
-                            updatedQuantity.baby * item.priceSnapshot.baby;
-
-                        return {
-                            ...item,
-                            quantity: updatedQuantity,
-                            totalItemPrice: newTotalPrice,
-                        };
-                    }
-                    return item;
-                }),
-            };
-
-            updatedCart.totalCartPrice = updatedCart.items.reduce((sum, item) => sum + item.totalItemPrice, 0);
-            setCart(updatedCart);
-
-            // Recalculate discount if coupon is applied
-            if (selectedCoupon) {
-                const newDiscount = (updatedCart.totalCartPrice * selectedCoupon.discount) / 100;
-                setDiscount(newDiscount);
-                setTotalAmount(updatedCart.totalCartPrice - newDiscount);
-            }
-
-            // TODO: Call API to update on backend
+            // gọi API trước để tránh trường hợp UI cập nhật nhưng backend lỗi,
+            //  dẫn đến trạng thái không đồng bộ
             await requestUpdateCartItem({ itemId, quantity: newQuantity, nameCounpon: selectedCoupon?.nameCoupon });
+
+            // là để đảm bảo tính nhất quán, tránh trường hợp backend
+            // có logic tính giá khác hoặc áp dụng coupon khác
+            await fetchCart();
+            // toast.success('Cập nhật số lượng thành công');
         } catch (error) {
             console.error('Error updating quantity:', error);
-            toast.error('Không thể cập nhật số lượng');
-            fetchCart(); // Refresh cart on error
+            toast.error(error.response?.data?.message || 'Không thể cập nhật số lượng');
+            fetchCart(); // Refresh cart on error to rollback UI
         } finally {
             setUpdating((prev) => ({ ...prev, [itemId]: false }));
         }

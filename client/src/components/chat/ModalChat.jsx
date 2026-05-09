@@ -8,7 +8,7 @@ import { useStore } from '../../hooks/useStore';
 import { requestCreateMessage, requestGetMessageByConversationIdAdmin } from '../../config/MessageRequest';
 
 const { TextArea } = Input;
-
+// 
 function ModalChat() {
     const { dataUser, dataConversation, newMessage } = useStore();
     const [isOpen, setIsOpen] = useState(false);

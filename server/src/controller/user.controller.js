@@ -199,10 +199,11 @@ class UserController {
         const data = await UserService.resetPassword(token, otp, newPassword);
         new OK({ message: 'success', metadata: data }).send(res);
     }
-
+    // Hàm tư vấn tour du lịch dựa trên danh sách tour hiện có và câu hỏi của khách hàng
     async chatbot(req, res) {
         const { id } = req.user;
         const { question } = req.body;
+        //Gọi API của Groq để tư vấn tour du lịch dựa trên danh sách tour hiện có và câu hỏi của khách hàng
         const data = await UserService.chatbot(question, id);
         new OK({ message: 'success', metadata: data }).send(res);
     }
@@ -230,9 +231,3 @@ class UserController {
 module.exports = new UserController();
 
 
-// {
-//   "title": "Tour Đà Nẵng 3 ngày 2 đêm",
-//   "price": 3500000,
-//   "destination": "Đà Nẵng,Hội An",
-//   "description": "Khám phá thành phố biển Đà Nẵng năng động"
-// }

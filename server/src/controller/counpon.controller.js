@@ -78,7 +78,9 @@ class CouponController {
         new OK({
             message: 'Lấy mã giảm giá thành công',
             metadata: coupon,
+            
         }).send(res);
+
     }
 }
 

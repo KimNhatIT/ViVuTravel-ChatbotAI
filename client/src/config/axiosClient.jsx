@@ -23,6 +23,7 @@ export class ApiClient {
             (config) => config,
             (error) => Promise.reject(error),
         );
+        
 
         // Response interceptor
         this.axiosInstance.interceptors.response.use(
@@ -88,6 +89,7 @@ export class ApiClient {
 
     handleAuthFailure() {
         this.logout().finally(() => {
+            Cookies.remove('logged');
             window.location.href = '/login';
         });
     }
@@ -98,6 +100,7 @@ export class ApiClient {
 
     async logout() {
         try {
+            Cookies.remove('logged');
             await this.axiosInstance.get('/api/users/logout');
         } catch (error) {
             console.error('Logout error:', error);

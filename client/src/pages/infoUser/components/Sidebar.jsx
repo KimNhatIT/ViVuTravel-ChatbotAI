@@ -44,8 +44,13 @@ function Sidebar({ activeTab, setActiveTab, isOpen, onToggle }) {
 
     const handleMenuClick = ({ key }) => {
         if (key === 'logout') {
-            // Handle logout logic later
-            console.log('Logout clicked');
+            // Xóa dữ liệu đăng nhập
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('user');
+
+            // Chuyển về trang login
+            window.location.href = '/login';
+
             return;
         }
         setActiveTab(key);
@@ -155,7 +160,9 @@ function Sidebar({ activeTab, setActiveTab, isOpen, onToggle }) {
 
                 .sidebar-menu .ant-menu-item-selected {
                     background: rgba(255, 255, 255, 0.25) !important;
-                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                    box-shadow:
+                        0 4px 16px rgba(0, 0, 0, 0.25),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
                     font-weight: 700;
                     border-left: 4px solid white;
                     padding-left: 14px !important;

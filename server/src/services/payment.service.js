@@ -48,7 +48,10 @@ async function calculateTotalPrice(cart, nameCoupon) {
 
 class PaymentService {
     async createPayment(typePayment, userId) {
+        // Lấy thông tin giỏ hàng của người 
+        // dùng để tính tổng tiền và thông tin thanh toán
         const findCart = await Cart.findOne({ user: userId });
+
         if (typePayment === 'momo') {
             return new Promise(async (resolve, reject) => {
                 const accessKey = 'F8BBA842ECF85';
@@ -57,9 +60,10 @@ class PaymentService {
                 const orderId = partnerCode + new Date().getTime();
                 const requestId = orderId;
                 const orderInfo = `Thanh toan don hang ${findCart.user}`;
-                const redirectUrl = 'http://localhost:3000/api/payment/momo';
+                const redirectUrl = 'http://localhost:3000/api/payment/momo' ;
                 const ipnUrl = 'http://localhost:3000/api/payment/momo';
                 const requestType = 'payWithMethod';
+                //Tính tổng tiền từ giỏ hàng và áp dụng mã giảm giá nếu có
                 const amount = await calculateTotalPrice(findCart, findCart.nameCounpon);
                 const extraData = '';
 
@@ -106,8 +110,10 @@ class PaymentService {
                 });
 
                 const options = {
+                    // Xây dựng URL cho môi trường test của MoMo
                     hostname: 'test-payment.momo.vn',
                     port: 443,
+                    // Đường dẫn API tạo đơn hàng của MoMo
                     path: '/v2/gateway/api/create',
                     method: 'POST',
                     headers: {
@@ -135,6 +141,7 @@ class PaymentService {
                 req.end();
             });
         } else if (typePayment === 'vnpay') {
+            //khởi tạo đối tượng VNPay với thông tin cấu hình
             const vnpay = new VNPay({
                 tmnCode: 'DH2F13SW',
                 secureSecret: '7VJPG70RGPOWFO47VSBT29WPDYND0EJG',
